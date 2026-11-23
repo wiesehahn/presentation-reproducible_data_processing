@@ -4,7 +4,7 @@
 
 Presented in the [DIVERSA](https://zkfn.de/diversa/) project.
 
-[![presentation slides](https://img.shields.io/badge/Presentation%20Slides-373b38?logo=revealdotjs&logoColor=white)](https://wiesehahn.github.io/presentation-reproducible_data_processing/presentation.html)
+[![presentation slides](https://img.shields.io/badge/Presentation%20Slides-373b38?logo=revealdotjs&logoColor=white)](https://wiesehahn.github.io/presentation-reproducible_data_processing/presentation.html) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24471759.svg)](https://doi.org/10.5281/zenodo.24471759)
 
 ##### Keywords
 **reproducibility**, **version control**, **git**, **GitHub**, **R**, **open science**
