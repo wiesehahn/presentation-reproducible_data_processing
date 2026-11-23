@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 540">
+  <style>
+    .area rect { fill: #e6f1f8; stroke: #02457a; stroke-width: 2.5; }
+    .area.remote rect { fill: #02457a; }
+    .title { font-family: Nunito, 'Segoe UI', sans-serif; font-size: 26px; font-weight: 700; fill: #02457a; text-anchor: middle; }
+    .remote .title { fill: #ffffff; }
+    .cap { font-family: Nunito, 'Segoe UI', sans-serif; font-size: 20px; fill: #494957; text-anchor: middle; }
+    .cmd { font-family: 'Roboto Mono', monospace; font-size: 22px; font-weight: 700; fill: #018abe; text-anchor: middle; }
+    .arrow { fill: none; stroke: #018abe; stroke-width: 4; }
+    .frame { fill: none; stroke: #ADADBD; stroke-width: 2; stroke-dasharray: 10 8; }
+    .frame-label { font-family: Nunito, 'Segoe UI', sans-serif; font-size: 20px; fill: #868696; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#018abe"/></marker>
+  </defs>
+
+  <rect class="frame" x="20" y="60" width="1040" height="370" rx="16"/>
+  <text class="frame-label" x="40" y="45">your computer: git</text>
+  <rect class="frame" x="1150" y="60" width="330" height="370" rx="16"/>
+  <text class="frame-label" x="1170" y="45">online (optional): GitHub</text>
+
+  <g class="area"><rect x="50" y="150" width="270" height="120" rx="12"/><text class="title" x="185" y="218">working folder</text></g>
+  <g class="area"><rect x="410" y="150" width="270" height="120" rx="12"/><text class="title" x="545" y="218">staging area</text></g>
+  <g class="area"><rect x="770" y="150" width="270" height="120" rx="12"/><text class="title" x="905" y="218">local repository</text></g>
+  <g class="area remote"><rect x="1180" y="150" width="270" height="120" rx="12"/><text class="title" x="1315" y="218">remote repository</text></g>
+
+  <text class="cap" x="185" y="315">where you edit files</text>
+  <text class="cap" x="545" y="315">changes selected</text>
+  <text class="cap" x="545" y="342">for the next save point</text>
+  <text class="cap" x="905" y="315">all save points</text>
+  <text class="cap" x="905" y="342">(the history)</text>
+  <text class="cap" x="1315" y="315">shared copy:</text>
+  <text class="cap" x="1315" y="342">backup &amp; collaboration</text>
+
+  <path class="arrow" d="M325,210 L402,210" marker-end="url(#a)"/>
+  <text class="cmd" x="365" y="190">add</text>
+  <path class="arrow" d="M685,210 L762,210" marker-end="url(#a)"/>
+  <text class="cmd" x="725" y="190">commit</text>
+  <path class="arrow" d="M1045,210 L1172,210" marker-end="url(#a)"/>
+  <text class="cmd" x="1110" y="190">push</text>
+
+  <path class="arrow" d="M1200,275 L1200,480 L75,480 L75,282" marker-end="url(#a)"/>
+  <text class="cmd" x="750" y="515">pull</text>
+</svg>

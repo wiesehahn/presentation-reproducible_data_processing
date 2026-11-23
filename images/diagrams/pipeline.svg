@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 570">
+  <style>
+    .node rect { fill: #e6f1f8; stroke: #02457a; stroke-width: 2; }
+    .node text { font-family: Nunito, 'Segoe UI', sans-serif; font-size: 25px; fill: #212129; text-anchor: middle; }
+    .edge { fill: none; stroke: #02457a; stroke-width: 2.5; }
+    .hit rect { fill: #fde3f0; stroke: #f10087; }
+    .origin rect { fill: #f10087; stroke: #f10087; }
+    .origin text { fill: #ffffff; font-weight: 700; }
+    .skip rect { fill: #f3f3f6; stroke: #adadbd; }
+    .skip text { fill: #868696; }
+    .edge.hit { stroke: #f10087; }
+    .edge.skip { stroke: #cecdda; }
+  </style>
+  <defs>
+    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#02457a"/></marker>
+    <marker id="m-hit" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f10087"/></marker>
+    <marker id="m-skip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#cecdda"/></marker>
+  </defs>
+  <path class="edge " d="M230,322 L290,322" marker-end="url(#m)"/>
+  <path class="edge " d="M500,322 L560,322" marker-end="url(#m)"/>
+  <path class="edge " d="M770,322 C800,322 800,162 830,162" marker-end="url(#m)"/>
+  <path class="edge " d="M500,122 C665,122 665,162 830,162" marker-end="url(#m)"/>
+  <path class="edge " d="M770,322 L830,322" marker-end="url(#m)"/>
+  <path class="edge " d="M770,322 C800,322 800,482 830,482" marker-end="url(#m)"/>
+  <path class="edge " d="M500,522 C665,522 665,482 830,482" marker-end="url(#m)"/>
+  <path class="edge " d="M1040,162 L1100,162" marker-end="url(#m)"/>
+  <path class="edge " d="M1040,482 C1070,482 1070,162 1100,162" marker-end="url(#m)"/>
+  <path class="edge " d="M1040,322 L1100,322" marker-end="url(#m)"/>
+  <path class="edge " d="M1040,482 L1100,482" marker-end="url(#m)"/>
+  <path class="edge " d="M1310,162 C1340,162 1340,92 1370,92" marker-end="url(#m)"/>
+  <path class="edge " d="M1310,162 C1340,162 1340,232 1370,232" marker-end="url(#m)"/>
+  <g class="node "><rect x="20" y="290" width="210" height="64" rx="10"/><text x="125" y="331">field plot data</text></g>
+  <g class="node "><rect x="290" y="290" width="210" height="64" rx="10"/><text x="395" y="331">cleaning script</text></g>
+  <g class="node "><rect x="290" y="90" width="210" height="64" rx="10"/><text x="395" y="131">climate data</text></g>
+  <g class="node "><rect x="290" y="490" width="210" height="64" rx="10"/><text x="395" y="531">soil data</text></g>
+  <g class="node "><rect x="560" y="290" width="210" height="64" rx="10"/><text x="665" y="331">plot table</text></g>
+  <g class="node "><rect x="830" y="130" width="210" height="64" rx="10"/><text x="935" y="171">site variables</text></g>
+  <g class="node "><rect x="830" y="290" width="210" height="64" rx="10"/><text x="935" y="331">map layer</text></g>
+  <g class="node "><rect x="830" y="450" width="210" height="64" rx="10"/><text x="935" y="491">diversity indices</text></g>
+  <g class="node "><rect x="1100" y="130" width="210" height="64" rx="10"/><text x="1205" y="171">models</text></g>
+  <g class="node "><rect x="1100" y="290" width="210" height="64" rx="10"/><text x="1205" y="331">web map</text></g>
+  <g class="node "><rect x="1100" y="450" width="210" height="64" rx="10"/><text x="1205" y="491">other subprojects</text></g>
+  <g class="node "><rect x="1370" y="60" width="210" height="64" rx="10"/><text x="1475" y="101">figures</text></g>
+  <g class="node "><rect x="1370" y="200" width="210" height="64" rx="10"/><text x="1475" y="241">paper</text></g>
+</svg>

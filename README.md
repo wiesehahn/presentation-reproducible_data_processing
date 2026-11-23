@@ -1,107 +1,68 @@
+# Reproducible data science
 
-# Presentation Template
+*Organise · Track · Record · Automate · Publish*
 
-This template repository is meant as personal starting point to create [RevealJS](https://revealjs.com/) presentations from Markdown via [Quarto](https://quarto.org/). It should provide a skeleton for a quick entry, using a concise style between presentations and automatic rendering via Github workflows (only works in Public Repositories).
+Presented in the [DIVERSA](https://zkfn.de/diversa/) project.
 
-## The Readme
+[![presentation slides](https://img.shields.io/badge/Presentation%20Slides-373b38?logo=revealdotjs&logoColor=white)](https://wiesehahn.github.io/presentation-reproducible_data_processing/presentation.html)
 
-This file (README.md) is the entry point to the repository on Github. There are several ways to make it visually appealing. 
+##### Keywords
+**reproducibility**, **version control**, **git**, **GitHub**, **R**, **open science**
 
-Ideally add an **Abstract**, in case it is in German also add a **Zusammenfassung**.
+## Abstract
 
-Use badges if appropriate, they can be created via https://shields.io/badges/static-badge and optionally contain logos from https://simpleicons.org. 
+Research data rarely stays the same: a field plot gets relocated, a species code gets fixed, a script gets updated. This 30-minute talk shows five practical steps to keep data science work traceable and reusable:
 
-E.g. 
-[![video recording](https://img.shields.io/badge/Video%20Recording-373b38?logo=youtube)](https://youtube.com)  [![presentation slides](https://img.shields.io/badge/Presentation%20Slides-373b38?logo=revealdotjs&logoColor=white)](https://wiesehahn.github.io/quarto_presentation_template/presentation.html)
+1. **organise** projects and document data
+2. **track** changes with git (and optionally GitHub)
+3. **record** the software environment
+4. **automate** the processing as a pipeline
+5. **publish** code and data with a licence and DOI
 
-```markdown
+The examples use a hypothetical change to the DIVERSA field plot sites.
 
-# Title
+## Repository contents
 
-*(Presented at X)*
+| Path | Content |
+|---|---|
+| `presentation.qmd` | slide source (Quarto, reveal.js), including speaker notes |
+| `_quarto.yml`, `_variables.yml` | presentation settings and variables |
+| `assets/` | theme (`custom_theme.scss`) and HTML includes |
+| `images/` | illustrations, screenshots and diagrams (sources listed in the `README.md` files there) |
+| `images/diagrams/make_pipelines.sh` | regenerates the pipeline diagrams |
+| `_extensions/` | Quarto extensions used by the slides (bundled, see below) |
+| `references.bib` | references |
+| `.github/workflows/publish.yml` | renders and publishes the slides |
 
-##### Keywords:
-**Keyword1**, **Keyword2**
+## Reproduce the slides
 
-[![video recording](https://img.shields.io/badge/Video%20Recording-373b38?logo=youtube)](https://youtube.com)  [![presentation slides](https://img.shields.io/badge/Presentation%20Slides-373b38?logo=revealdotjs&logoColor=white)](https://wiesehahn.github.io/quarto_presentation_template/presentation.html)
+**Requirements:** [Quarto](https://quarto.org) 1.6.43. No R or Python is needed, because the slides contain no executed code.
 
-
-
-#### Abstract
-
-Template repository to help creating a presentation in Quarto which is rendered to RevealJS via Github Actions.
-
---- 
-
-#### Description
-
-This template repository is meant as personal starting point to create [RevealJS](https://revealjs.com/) presentations from Markdown via [Quarto](https://quarto.org/). It should provide a skeleton for a quick entry, using a concise style between presentations and automatic rendering via Github workflows (only works in Public Repositories).
+```bash
+quarto preview presentation.qmd   # live preview
+quarto render                     # build into _site/
 ```
 
+The extensions are bundled in `_extensions/`, so no installation step is needed:
 
-### Get startet
+| Extension | Version |
+|---|---|
+| [attribution](https://github.com/quarto-ext/attribution) | 0.1.1 |
+| [lightbox](https://github.com/quarto-ext/lightbox) | 0.1.9 |
+| [iconify](https://github.com/mcanouil/quarto-iconify) | 2.1.2 |
+| [qrcode](https://github.com/jmbuhr/quarto-qrcode) | 0.0.1 |
+| [verticator](https://github.com/Martinomagnifico/quarto-verticator) | 1.2.3 |
 
-The following files contain sample code (including variables such as website), please edit / replace the content:
-- `presentation.qmd` (main file to add content for presentation) 
-- `references.bib` (optionally, add references to be included)
-- `_quarto.yml` (main file to change presentation settings)
-- `_variables.yml` (optionally, add variables to be added in .qmd)
+**Publishing:** every push to `main` renders the slides with the same pinned Quarto version and deploys them to GitHub Pages. This requires *Settings → Pages → Source: GitHub Actions* to be enabled once.
 
-Informtion about Quarto Markdown syntax and options for RevealJS presentations can be found at https://quarto.org/docs/presentations/revealjs/.
+## License and credits
 
-#### Citation
-The repository comes with a `CITATION.cff` file, which provides information about the correct citation. It is supported by Github, Zenodo and Zotero. 
-Change fields to desired variables or delete completely. A file can also be created or updated using a [UI](https://citation-file-format.github.io/cff-initializer-javascript/#/).
+- **Slides and text:** [CC BY-SA 4.0](LICENSE), Jens Wiesehahn.
+- **Illustrations:** artwork by [Allison Horst](https://allisonhorst.com) (partly for Openscapes), CC BY 4.0.
+- **VS Code screenshot:** from the VS Code documentation, CC BY 3.0 US.
 
-To create a DOI for the repository you have to [connect to Zenodo](https://docs.github.com/de/repositories/archiving-a-github-repository/referencing-and-citing-content).
+Details for every image are listed in [images/horst/README.md](images/horst/README.md) and [images/screenshots/README.md](images/screenshots/README.md).
 
-1. [toggle switch for repository](https://zenodo.org/account/settings/github/)
-2. [ publish a release](https://docs.github.com/de/repositories/releasing-projects-on-github/managing-releases-in-a-repository)
-3. (optionally) add DOI to `CITATION.cff` and as badge in `README.md`
+## Citation
 
-
-#### References
-
-References can be manually inserted in the `references.bib` file and cited via their key (e.g. `[@Wiesehahn_2023]`. 
-
-Alternatively references can be managed within Zotero and synchronized with the `references.bib`,  plugins such as the *Citation Picker for Zotero* in VS Code help to insert citations (e.g. via `alt`+`shift`+`z`).
-
-https://quarto.org/docs/authoring/footnotes-and-citations.html
-
-
-### Pre-installed extensions
-
-#### [Quarto social embeds](https://github.com/sellorm/quarto-social-embeds)
-
-Use to embed GitHub gists, Twitter, Youtube, Vimeo, Mastodon, e.g.:
-`{{< gist wiesehahn 6b6c215c227341f4faab03ff96fa7f1b >}}`
-
-#### [Attribution](https://github.com/quarto-ext/attribution)
-
-Use to display attribution text sideways, e.g.:
-```r
-::: {.attribution}
-by [@Jens Wiesehahn](https://wiesehahn.github.io/)
-:::
-```
-
-#### [Lightbox](https://github.com/quarto-ext/lightbox)
-
-Use to add lightbox styling and behavior to images in HTML documents, e.g.:
-
-`![logo](images/triangle_logo.png){.lightbox}`
-
-#### [Verticator](https://github.com/Martinomagnifico/quarto-verticator)
-
-Adds indicators to show the amount of slides in a vertical stack.
-
-#### [Qrcode Extension for Quarto](https://github.com/jmbuhr/quarto-qrcode)
-
-Provides shortcodes for qrcodejs in quarto, e.g.:
-
-`{{< qrcode https://github.com/jmbuhr/quarto-qrcode >}}`
-
-#### [Iconify](https://github.com/mcanouil/quarto-iconify)
-
-provides support to free and open source icons provided by [Iconify](https://icon-sets.iconify.design/), e.g.:
-`{{< iconify typcn plus >}}`
+See [CITATION.cff](CITATION.cff), or use *Cite this repository* on GitHub.

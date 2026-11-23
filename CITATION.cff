@@ -1,26 +1,32 @@
 cff-version: 1.2.0
 title: >-
-  Quarto Presentation Template
+  Reproducible data science: Organise, Track, Record, Automate, Publish
 message: >-
-  Rendered presentation available at https://wiesehahn.github.io/quarto_presentation_template/presentation
+  If you use these slides, please cite them as below.
+  Rendered presentation: https://wiesehahn.github.io/presentation-reproducible_data_processing/presentation.html
 type: dataset
 authors:
   - given-names: Jens
     family-names: Wiesehahn
-    email: wiesehahn.jens@gmail.com
+    email: jens.wiesehahn@nw-fva.de
     affiliation: Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)
     orcid: 'https://orcid.org/0000-0002-4482-3012'
-identifiers:
-  - type: doi
-    value: someDOI/zenodo.example
 repository-code: >-
-  https://github.com/wiesehahn/quarto_presentation_template
+  https://github.com/wiesehahn/presentation-reproducible_data_processing
 url: >-
-  https://wiesehahn.github.io/quarto_presentation_template/presentation
+  https://wiesehahn.github.io/presentation-reproducible_data_processing/presentation.html
 abstract: >-
-  Template repository to help creating a presentation in Quarto which is rendered to RevealJS via Github Actions. 
+  Slides of a 30-minute talk for researchers in the DIVERSA project on
+  reproducible data science: organising projects and documenting data,
+  tracking changes with git and GitHub, recording the software environment,
+  automating processing as a pipeline, and publishing code and data with a
+  licence and DOI.
 keywords:
-  - Keyword1
-  - Keyword2
+  - reproducibility
+  - version control
+  - git
+  - GitHub
+  - research software
+  - open science
 license: CC-BY-SA-4.0
-date-released: 2023-07-31
+date-released: 2026-11-25

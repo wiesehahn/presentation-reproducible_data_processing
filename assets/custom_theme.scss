@@ -82,8 +82,9 @@ $body-color: $dark;
 $code-bg: darken($body-bg, 3%);
 $code-color: $highlight-pink;//$blue-800;
 
-$code-block-bg: darken($body-bg, 3%);
-$code-block-border-color: $body-bg;
+$code-block-bg: $body-bg; // opaque: line-highlight steps stack copies of the block
+$code-block-border-color: $third-color;
+$code-block-font-size: 0.85em;
 
 //$link-color: $blue-600;//$indigo-blue;
 
@@ -107,7 +108,7 @@ h1, h2, h3, h4, h5 {
     font-weight: 300;
 }
 
-$code-font-size: $font-size-base;
+$code-font-size: 1em; // inline code scales with surrounding text
 
 code {
     font-feature-settings: 'dlig' 0, 'liga' 0, 'calt' 1, 'zero' 1, 'ss02' 0;
@@ -226,4 +227,111 @@ $callout-color-important: $highlight-pink;
 .reveal a:hover {
   color: $third-color;
   text-decoration-color:$highlight-blue;
+}
+
+
+// ---- presentation-specific rules ----
+
+// inline code same size as surrounding text (also in tables)
+.reveal code {
+  font-size: 1em;
+}
+
+// code blocks: no grey box, thin accent line on the left
+.reveal div.sourceCode,
+.reveal pre.sourceCode,
+.reveal pre {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+.reveal div.sourceCode {
+  border-left: 4px solid $third-color;
+  border-radius: 0;
+  padding-left: 0.5em;
+}
+.reveal div.code-with-filename .code-with-filename-file {
+  background-color: transparent;
+  border: none;
+}
+.reveal pre code {
+  background-color: $body-bg; // must be opaque for line-highlight steps
+  max-height: none;
+}
+
+// more space between slide title and content
+.reveal .slide h2 {
+  margin-bottom: 0.8em;
+}
+
+// intro question directly under the slide title
+.reveal .question {
+  color: $second-color;
+  font-style: italic;
+  font-size: 1.1em;
+  margin-top: -0.3em;
+  margin-bottom: 1em;
+}
+
+// title slide: more space between title and subtitle
+#title-slide .subtitle {
+  margin-top: 1.5em;
+  font-size: 1.5em;
+}
+
+#title-slide .quarto-title-author-name,
+#title-slide .author {
+  font-size: 0.9em;
+}
+
+// more space above tables
+.reveal .slide table {
+  margin-top: 0.8em;
+}
+
+// diff view: two-state auto-animate of a changed file
+.reveal .diffview {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85em;
+  border-left: 4px solid $third-color;
+  padding-left: 0.5em;
+  line-height: 1.6;
+}
+.reveal .diffview .fname {
+  font-size: 0.8em;
+  color: $gray-600;
+  margin-bottom: 0.3em;
+}
+.reveal .diffview .line {
+  white-space: pre;
+  padding: 0 0.4em;
+}
+.reveal .diffview .del {
+  background: #fde3f0;
+  color: #b0005f;
+}
+.reveal .diffview .add {
+  background: #ddf5e6;
+  color: #0a6e37;
+}
+
+// legend for pipeline diagrams
+.reveal .legend {
+  font-size: 0.8em;
+  color: $gray-700;
+}
+.reveal .legend .box {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin: 0 0.3em 0 1em;
+}
+
+// line-highlight steps stack copies of a code block on top of each other;
+// each copy needs an opaque background, otherwise lower copies shine through
+.reveal div.sourceCode pre code {
+  background-color: $body-bg !important;
 }

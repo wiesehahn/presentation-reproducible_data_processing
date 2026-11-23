@@ -27,6 +27,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.6.43  # pinned for reproducible rendering
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Render Website
