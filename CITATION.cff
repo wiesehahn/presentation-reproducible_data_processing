@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: >-
+  Quarto Presentation Template
+message: >-
+  Rendered presentation available at https://wiesehahn.github.io/quarto_presentation_template/presentation
+type: dataset
+authors:
+  - given-names: Jens
+    family-names: Wiesehahn
+    email: wiesehahn.jens@gmail.com
+    affiliation: Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)
+    orcid: 'https://orcid.org/0000-0002-4482-3012'
+identifiers:
+  - type: doi
+    value: someDOI/zenodo.example
+repository-code: >-
+  https://github.com/wiesehahn/quarto_presentation_template
+url: >-
+  https://wiesehahn.github.io/quarto_presentation_template/presentation
+abstract: >-
+  Template repository to help creating a presentation in Quarto which is rendered to RevealJS via Github Actions. 
+keywords:
+  - Keyword1
+  - Keyword2
+license: CC-BY-SA-4.0
+date-released: 2023-07-31
