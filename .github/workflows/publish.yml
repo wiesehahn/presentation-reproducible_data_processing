@@ -1,10 +1,11 @@
 # file: .github/workflows/publish.yml
 name: Publish Website
 
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+on:
+  push:
+    branches: ['main']
+  # allows a fresh run from the Actions tab
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -12,16 +13,14 @@ permissions:
   pages: write
   id-token: write
 
-on:
-  push:
-    branches: ['main']
+# Allow one concurrent deployment, but let a running deployment finish
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  quarto:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,6 +36,16 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: '_site'
+
+  # separate job: if only the deployment fails, "Re-run failed jobs"
+  # reuses the uploaded artifact instead of creating a second one
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
