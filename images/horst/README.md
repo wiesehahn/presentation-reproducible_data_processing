@@ -14,3 +14,4 @@ All images are downscaled to 1800 px wide.
 | `github_fall.jpg` | stats-illustrations `github-illustrated-series/github_fall.png` | A commit is a save point |
 | `laptop_fire.jpg` | [allisonhorst.com](https://allisonhorst.com) ("plan on it.") | Why add a remote? (backup) |
 | `github_friends.jpg` | stats-illustrations `github-illustrated-series/github_friends.png` | Why add a remote? (collaboration) |
+| `quarto_schematic.jpg` | [allisonhorst.com](https://allisonhorst.com) (Quarto schematic) | From script to report |

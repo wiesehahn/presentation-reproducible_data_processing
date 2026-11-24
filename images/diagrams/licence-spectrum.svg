@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 420">
+  <style>
+    .lbl { font-family: Nunito, 'Segoe UI', sans-serif; font-size: 25px; fill: #212129; text-anchor: middle; }
+    .row { font-family: Nunito, 'Segoe UI', sans-serif; font-size: 24px; font-weight: 700; fill: #868696; }
+    .end { font-family: Nunito, 'Segoe UI', sans-serif; font-size: 24px; font-weight: 700; }
+    .pill { fill: #e6f1f8; stroke: #02457a; stroke-width: 2; }
+    .rec { fill: #02457a; stroke: #02457a; }
+    .rec + .lbl, .lbl.on { fill: #ffffff; font-weight: 700; }
+    .tick { stroke: #adadbd; stroke-width: 2; stroke-dasharray: 4 4; }
+  </style>
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#02b875"/>
+      <stop offset="0.55" stop-color="#f0ad4e"/>
+      <stop offset="1" stop-color="#d9534f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- axis -->
+  <rect x="140" y="190" width="1300" height="20" rx="10" fill="url(#g)"/>
+  <text class="end" x="140" y="405" fill="#02b875">← open, easy to reuse</text>
+  <text class="end" x="1440" y="405" fill="#d9534f" text-anchor="end">restrictive →</text>
+
+  <!-- data licences (above) -->
+  <text class="row" x="10" y="112">data</text>
+  <line class="tick" x1="230" y1="130" x2="230" y2="190"/>
+  <rect class="pill" x="160" y="76" width="140" height="54" rx="27"/><text class="lbl" x="230" y="112">CC0</text>
+  <line class="tick" x1="480" y1="130" x2="480" y2="190"/>
+  <rect class="pill rec" x="400" y="76" width="160" height="54" rx="27"/><text class="lbl on" x="480" y="112">CC BY ✓</text>
+  <line class="tick" x1="760" y1="130" x2="760" y2="190"/>
+  <rect class="pill" x="670" y="76" width="180" height="54" rx="27"/><text class="lbl" x="760" y="112">CC BY-SA</text>
+  <line class="tick" x1="1040" y1="130" x2="1040" y2="190"/>
+  <rect class="pill" x="950" y="76" width="180" height="54" rx="27"/><text class="lbl" x="1040" y="112">CC BY-NC</text>
+
+  <!-- code licences (below) -->
+  <text class="row" x="10" y="342">code</text>
+  <line class="tick" x1="330" y1="210" x2="330" y2="306"/>
+  <rect class="pill rec" x="250" y="306" width="160" height="54" rx="27"/><text class="lbl on" x="330" y="342">MIT ✓</text>
+  <line class="tick" x1="560" y1="210" x2="560" y2="306"/>
+  <rect class="pill" x="470" y="306" width="180" height="54" rx="27"/><text class="lbl" x="560" y="342">Apache 2.0</text>
+  <line class="tick" x1="840" y1="210" x2="840" y2="306"/>
+  <rect class="pill" x="770" y="306" width="140" height="54" rx="27"/><text class="lbl" x="840" y="342">GPL</text>
+
+  <!-- both: no licence -->
+  <line class="tick" x1="1330" y1="130" x2="1330" y2="190"/>
+  <line class="tick" x1="1330" y1="210" x2="1330" y2="306"/>
+  <rect class="pill" x="1200" y="76" width="260" height="54" rx="27" style="fill:#fbe3e2;stroke:#d9534f"/><text class="lbl" x="1330" y="112">no licence</text>
+  <rect class="pill" x="1200" y="306" width="260" height="54" rx="27" style="fill:#fbe3e2;stroke:#d9534f"/><text class="lbl" x="1330" y="342">no licence</text>
+</svg>

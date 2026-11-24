@@ -4,6 +4,7 @@ title-slide-attributes:
   data-background-size: contain
   data-background-position: bottom
   data-background-color: "#ffffff"
+  data-notes: "Welcome. • Short intro: who I am, my role in DIVERSA. • Topic: how to keep data and code work traceable and reusable. • Five steps in 30 minutes: organise, track, record, automate, publish. • No laptop needed, just follow along. • Slides are online and citable, link and QR code at the end."
 nocite: |
   @Horst_artwork
 ---
@@ -21,9 +22,12 @@ What happens if one value changes at the very start?
 :::
 
 ::: notes
-~1.5 min. Hypothetical example: one field plot has to be relocated (site too steep), so its coordinates change.
-First show the pipeline, then reveal: everything downstream is affected, figures, paper, map, other subprojects.
-Who knows which results already used the old value? Can we tell what changed, when, and why?
+- ~1.5 min.
+- Imagine: one of our field plots has to be relocated, the site was too steep. Its coordinates change.
+- Walk through the pipeline: field data, cleaning, plot table, then many things built on top.
+- Click: everything downstream turns pink. All of it is affected.
+- Ask: who already used the old coordinates? Which figures are now wrong?
+- Can we even tell what changed, when, and why?
 :::
 
 ## Reproducibility is a spectrum
@@ -33,23 +37,28 @@ Same data + same code → same result?
 :::
 
 :::: {.columns}
-::: {.column width="45%"}
-Reproducibility is **not all-or-nothing**.
+::: {.column width="50%"}
+Not all-or-nothing. Every step helps:
 
-Every step helps:
+::: {.qa}
+[Where is what? What does it mean?]{.q}
+[→ **Organise & document**]{.a}
 
-README · git · recorded versions · pipeline · DOI
+[What changed, when, and why?]{.q}
+[→ **Version control**]{.a}
 
-<br>
+[Will it still run elsewhere?]{.q}
+[→ **Record the environment**]{.a}
 
-[Small steps make your work easier to rerun, check and reuse, for colleagues and for future you.]{.second-color}
+[What do I rerun, in which order?]{.q}
+[→ **Automate**]{.a}
 
-<br>
-
-Who has a file called `final_v3`?
+[Can others find, reuse and cite it?]{.q}
+[→ **Publish**]{.a}
+:::
 :::
 
-::: {.column width="55%"}
+::: {.column width="50%"}
 ![](images/horst/reproducibility_court.jpg){fig-alt="Cartoon: a monster judge in the reproducibility court, an R Markdown document as exhibit A"}
 :::
 ::::
@@ -59,12 +68,19 @@ Artwork by [Allison Horst](https://allisonhorst.com), CC-BY 4.0
 :::
 
 ::: notes
-~1 min. Show of hands for final_v3. No shame: everyone starts there.
-Today: five steps, each useful on its own. Pick the next one that fits you.
+- ~1.5 min.
+- Reproducible: the same data and the same code give the same result.
+- Changing data is just one challenge. These five questions come up in every project.
+- Each question has a step that answers it. These are the five parts of the talk.
+- Not all-or-nothing: each step helps on its own, for colleagues and for future you.
 :::
 
 
 # 1 · Organise {background-color="#02457a"}
+
+::: notes
+- First step: organise the project and document it.
+:::
 
 ## One project, one folder {auto-animate="true"}
 
@@ -85,7 +101,9 @@ my-project/
 ```
 
 ::: notes
-~30 s. Recognisable? Which one is current?
+- ~30 s.
+- Does this look familiar? Which file is the current one?
+- Ask for a show of hands: who has a file called final_v3? No shame, everyone starts here.
 :::
 
 ## One project, one folder {auto-animate="true"}
@@ -121,9 +139,11 @@ Artwork by [Allison Horst](https://allisonhorst.com), CC-BY 4.0
 :::
 
 ::: notes
-~1 min. Separate raw data, processed data, code and outputs.
-Anything in data/ and output/ can be deleted and recreated by the scripts.
-Inspired by Wilson et al. 2017 "Good enough practices".
+- ~1 min.
+- One folder per project, everything inside it.
+- Separate raw data, processed data, code and results.
+- data/ and output/ can be deleted at any time: the scripts recreate them.
+- The sketch on the right shows the same flow: keep raw data raw, then wrangle, analyse, report.
 :::
 
 ## Raw data stays untouched
@@ -134,7 +154,7 @@ How do you correct an error in raw data?
 
 [Correct in code, not in the file.]{.second-color}
 
-```{.r filename="R/01_clean_plots.R" code-line-numbers="|1|3-5|7"}
+```{.r filename="R/01_clean_plots.R"}
 plots <- read.csv("data-raw/plots_field_2025.csv")
 
 # Plot 17 relocated: original site too steep for measurements.
@@ -145,8 +165,12 @@ write.csv(plots, "data/plots.csv", row.names = FALSE)
 ```
 
 ::: notes
-~1 min. Step through: read the raw file, fix with explanation, write the processed file.
-The raw field file is never edited by hand. Same idea in Python or any other language.
+- ~1 min.
+- Never edit the original field file by hand.
+- Read it, fix it in code, write the result to data/.
+- The comment explains why: site too steep, field protocol 42.
+- The correction is documented exactly where it happens.
+- Same idea in Python or any other language.
 :::
 
 ## Document for future you
@@ -156,28 +180,22 @@ Would a new colleague understand your project?
 :::
 
 :::: {.columns}
-::: {.column width="48%"}
-**Best practices**
-
-- plain text / Markdown
-- next to the data and code
-- updated together with the code
-- written for someone new
-
-**README essentials**
+::: {.column width="45%"}
+**Document at every level**
 
 | | |
 |---|---|
-| Purpose | what is this? |
-| Structure | what is where? |
-| How to run | which script first? |
-| Data sources | where from, licence? |
-| Contact | who to ask? |
+| project | README |
+| data | data dictionary |
+| code | comments: *why*, not *what* |
+| changes | commit messages |
 
-{{< iconify tabler external-link >}} guide & template: [makeareadme.com](https://www.makeareadme.com)
+<br>
+
+Template & guide: [makeareadme.com](https://www.makeareadme.com)
 :::
 
-::: {.column width="52%"}
+::: {.column width="55%"}
 ![](images/horst/github_reuse.jpg){fig-alt="Two monsters reading a climbing guide book with existing routes, warnings and notes" .lightbox}
 :::
 ::::
@@ -187,8 +205,13 @@ Artwork by [Allison Horst](https://allisonhorst.com) for Openscapes, CC-BY 4.0
 :::
 
 ::: notes
-~1 min. The most important collaborator is you in six months.
-A README is like a climbing guide: routes, warnings, notes. GitHub shows it automatically.
+- ~1.5 min.
+- Your most important collaborator is you in six months.
+- Document at four levels. The README is the entry point of every project.
+- A good README covers: purpose, structure, how to run, data sources and licence, contact.
+- Like a climbing guide: existing routes, warnings, notes.
+- Plain text, next to the code, updated together with the code. GitHub shows it automatically.
+- makeareadme.com has a template.
 :::
 
 ## Describe your data
@@ -209,8 +232,10 @@ What does `x` mean here, and what is `NA`?
 [A data dictionary answers questions before they are asked.]{.second-color}
 
 ::: notes
-~1 min. Type, unit, allowed values and missing-value codes are the classic gaps.
-Can live in the README or as a separate CSV file.
+- ~1 min.
+- A data dictionary describes every column.
+- The usual gaps: units, coordinate system, allowed values, and how missing values are coded.
+- It can live in the README or in a separate CSV file.
 :::
 
 ## Relative paths, not absolute {auto-animate="true"}
@@ -238,7 +263,9 @@ Artwork by [Allison Horst](https://allisonhorst.com), CC-BY 4.0
 :::
 
 ::: notes
-~15 s. This path exists on exactly one computer.
+- ~15 s.
+- This path exists on exactly one computer: mine.
+- Send the script to a colleague and it breaks on the first line.
 :::
 
 ## Relative paths, not absolute {auto-animate="true"}
@@ -268,12 +295,19 @@ Artwork by [Allison Horst](https://allisonhorst.com), CC-BY 4.0
 :::
 
 ::: notes
-~45 s. Opening the project sets the working directory to the project root.
-R users: avoid setwd(); for Quarto files in subfolders here::here() helps.
+- ~45 s.
+- Paths start at the project folder, so they work on any computer.
+- Open the whole project, e.g. as an RStudio project or a VS Code folder. That sets the starting point.
+- R users: avoid setwd(). For Quarto files in subfolders, here::here() helps.
+- Transition: the project is organised. Next, keep track of how it changes.
 :::
 
 
 # 2 · Track {background-color="#02457a"}
+
+::: notes
+- Second step: keep track of changes with version control.
+:::
 
 ## Why git?
 
@@ -290,8 +324,11 @@ Artwork by [Allison Horst](https://allisonhorst.com) for Openscapes, CC-BY 4.0
 :::
 
 ::: notes
-~1 min. git is a program on your own computer, it works offline and privately.
-One file name, every version inside git. No more final_v3.
+- ~1 min.
+- git is a program on your own computer. It works offline and privately, no account needed.
+- One file name, every version is stored inside git. No more final_v3.
+- Four benefits: full history, undo, compare versions, and see why something changed.
+- Right panel: without version control you get lost in file names.
 :::
 
 ## A commit is a save point with a message
@@ -323,9 +360,10 @@ Artwork by [Allison Horst](https://allisonhorst.com) for Openscapes, CC-BY 4.0
 :::
 
 ::: notes
-~1 min. Each line is a snapshot of the whole project with an ID, author, date and message.
-Like protection points in climbing: if something goes wrong, you only fall back to the last commit.
-Write messages that say why.
+- ~1 min.
+- A commit is a snapshot of the whole project: ID, author, date, message.
+- Like protection points when climbing: if you fall, you only drop back to the last commit.
+- Write messages that say why, not just "update".
 :::
 
 ## See exactly what changed {auto-animate="true"}
@@ -345,7 +383,8 @@ What changed, when, and why?
 ```
 
 ::: notes
-~15 s. The processed plot table before the change.
+- ~15 s.
+- This is the processed plot table before the change.
 :::
 
 ## See exactly what changed {auto-animate="true"}
@@ -370,8 +409,11 @@ What changed, when, and why?
 `a3f9c21` · Jens · 2026-05-12 · *Move plot 17: original site too steep*
 
 ::: notes
-~1 min. After rerunning the script git shows exactly this line changed: old in pink, new in green, plus who, when and why.
-Works for code and text-based data (CSV, GeoJSON), not for Excel or binary files.
+- ~1 min.
+- After rerunning the script, git shows exactly what changed: old line in pink, new line in green.
+- Plus who, when and why, from the commit.
+- This answers the question from the opening.
+- Works for code and text data like CSV or GeoJSON, not for Excel or other binary files.
 :::
 
 ## Why add a remote?
@@ -401,6 +443,10 @@ git works locally, a remote is **optional**.
 {{< iconify tabler lock >}} **private**: only you, or your team
 
 {{< iconify tabler world >}} **public**: open, route to publication
+
+<br>
+
+{{< iconify simple-icons github >}} GitHub · {{< iconify simple-icons gitlab >}} [GitLab](https://git.nw-fva.de) · {{< iconify simple-icons codeberg >}} [Codeberg](https://codeberg.org)
 :::
 
 ::: {.column width="58%"}
@@ -417,43 +463,14 @@ Artwork by [Allison Horst](https://allisonhorst.com) (partly for Openscapes), CC
 :::
 
 ::: notes
-~1 min. Collaboration includes your past and future self.
-Start private if unsure, make public when publishing.
-.gitignore keeps large or sensitive files (e.g. audio recordings, passwords) out of git.
-:::
-
-## Where to host
-
-::: {.question}
-Where should the remote live?
-:::
-
-:::: {.columns}
-::: {.column width="33%"}
-### {{< iconify simple-icons github >}} GitHub
-
-most widespread, used here
-:::
-
-::: {.column width="33%"}
-### {{< iconify simple-icons gitlab >}} GitLab
-
-institutional instances, e.g. [git.nw-fva.de](https://git.nw-fva.de)
-:::
-
-::: {.column width="33%"}
-### {{< iconify simple-icons codeberg >}} Codeberg
-
-non-profit, EU-based, [codeberg.org](https://codeberg.org)
-:::
-::::
-
-<br>
-
-[Same git everywhere: switching hosts is easy.]{.second-color}
-
-::: notes
-~30 s. Institutional GitLab is often not accessible for external partners, so check access first.
+- ~1.5 min.
+- git alone works on your computer. A remote is a copy online.
+- Click 1, backup: laptops die. Plan on it.
+- Click 2, collaboration: one shared history. That includes your past and future self.
+- Click 3, sharing: one link to the whole project.
+- Start private if unsure. Make it public when you publish.
+- Hosts: GitHub is the most widespread and used here. Institutional GitLab is often not accessible to external partners. Codeberg is non-profit and EU-based. git is the same everywhere, so switching is easy.
+- Keep large or sensitive files out of git with .gitignore, e.g. audio recordings or passwords.
 :::
 
 ## The daily loop
@@ -467,9 +484,12 @@ How does a change get from my folder to GitHub?
 [In RStudio and VS Code these are buttons.]{.second-color}
 
 ::: notes
-~1.5 min. add: choose which changes go into the next save point. commit: save them with a message.
-push: upload to GitHub. pull: get your colleagues' changes.
-Without a remote, only add and commit, all local.
+- ~1.5 min.
+- Point at each box from left to right.
+- add: choose which changes go into the next save point.
+- commit: save them with a message, in the local history.
+- push: upload to GitHub. pull: get your colleagues' changes.
+- Without a remote it is only add and commit, all local.
 :::
 
 ## No terminal needed
@@ -502,8 +522,11 @@ Screenshot: [VS Code docs](https://code.visualstudio.com/docs/sourcecontrol/stag
 :::
 
 ::: notes
-~1 min. Checkboxes or plus buttons = add, button = commit, arrows / sync = pull and push.
-Setup help: Happy Git and GitHub for the useR.
+- ~1 min.
+- No command line needed. Editors have git built in.
+- The plus button is add, the Commit button is commit, Sync is pull and push.
+- RStudio has the same in its Git pane.
+- For the first setup: Happy Git and GitHub for the useR, link at the end.
 :::
 
 ## Explore a real repository
@@ -530,12 +553,21 @@ What does this look like in practice?
 ::::
 
 ::: notes
-~2 min. Switch to the browser and walk through sf. Audience may follow on their phones or laptops.
-Many contributors, active issues and PRs, releases on CRAN, checks on every push.
+- ~2 min.
+- Switch to the browser. The audience can follow along via the QR code.
+- sf is a widely used R package for spatial data, maintained on GitHub.
+- Show the commit history, then blame on one file.
+- Show issues and pull requests: this is how many people work together.
+- Show releases and Actions briefly.
+- Transition: the history is safe. But will the code still run?
 :::
 
 
 # 3 · Record {background-color="#02457a"}
+
+::: notes
+- Third step: record the software environment.
+:::
 
 ## "Works on my machine"
 
@@ -545,23 +577,49 @@ Will your code still run next year?
 
 [Package versions change, and results with them.]{.second-color}
 
-<br>
-
+:::: {.columns}
+::: {.column width="50%"}
 ::: {.incremental}
 - **minimum**: list software and package versions in the README
-- **R**: `sessionInfo()`, better `renv` (`renv::init()`, `renv::snapshot()`)
-- commit the lock file (`renv.lock`) to git
-- **this presentation**: Quarto version pinned in the GitHub workflow
+- **R**: `renv::snapshot()` writes the lock file, `renv::restore()` rebuilds it
+- commit `renv.lock` to git
+- **this presentation**: Quarto version pinned in the workflow
+:::
 :::
 
+::: {.column width="50%"}
+```{.json filename="renv.lock (excerpt)"}
+{
+  "R": { "Version": "4.4.1" },
+  "Packages": {
+    "sf": {
+      "Version": "1.0-16"
+    },
+    "targets": {
+      "Version": "1.7.1"
+    }
+  }
+}
+```
+:::
+::::
+
 ::: notes
-~2 min. Same idea in Python: requirements.txt or environment.yml.
-renv records exact versions per project, others restore them with renv::restore().
-Containers (Docker) go one step further, not needed for most projects.
+- ~2 min.
+- Packages get updated. Functions change, defaults change, results can change.
+- Minimum: write down the versions you used.
+- Better in R: renv records the exact versions in a lock file, like the one on the right.
+- A colleague runs renv::restore() and gets the same versions.
+- Same idea in Python: requirements.txt or environment.yml.
+- Containers like Docker go one step further. Most projects do not need them.
 :::
 
 
 # 4 · Automate {background-color="#02457a"}
+
+::: notes
+- Fourth step: automate the processing.
+:::
 
 ## What do I rerun?
 
@@ -572,7 +630,9 @@ Which scripts do I need to rerun after a change?
 ![](images/diagrams/pipeline-affected.svg){fig-alt="The pipeline with every step downstream of the field data highlighted" width="1500px"}
 
 ::: notes
-~1 min. Callback to the opening: every pink box is outdated. Doing this by hand means forgetting a step.
+- ~1 min.
+- Back to the opening picture: plot 17 moved, every pink box is outdated.
+- Rerunning all of this by hand means forgetting a step sooner or later.
 :::
 
 ## Write the pipeline down
@@ -614,8 +674,12 @@ The tool knows the order, only changes rerun.
 `targets::tar_make()` · [same idea in other languages: Make, Snakemake]{.third-color}
 
 ::: notes
-~1.5 min. Left: works, but you must remember the order and you rerun everything.
-Right: each step names its inputs, so targets knows the order and what is outdated.
+- ~1.5 min.
+- Simple start: one script that runs all others in order. Better than nothing.
+- But you must keep the order yourself, and everything reruns every time.
+- Pipeline: each step names its inputs. Example: diversity needs plots and soil.
+- So the tool knows the order. One command, tar_make(), runs it all.
+- Other languages have the same idea: Make, Snakemake.
 :::
 
 ## Only rerun what changed
@@ -631,11 +695,66 @@ Do I have to rerun everything?
 :::
 
 ::: notes
-~1 min. targets remembers what it built. If only the soil data changes, only the steps downstream of it run again.
-Saves hours for slow models.
+- ~1 min.
+- The pipeline remembers what it already built.
+- Here only the soil data changed. Only the steps downstream of it run again.
+- Everything grey is skipped. For slow models this saves hours.
 :::
 
-## Let GitHub do it
+## From script to report
+
+::: {.question}
+How do figures and numbers get into your paper?
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+**Copy & paste**
+
+Figures and numbers copied into Word. Works, but every change means updating each copy by hand.
+
+**One document**
+
+Text, code and results in one file:
+
+```{=html}
+<!-- raw HTML with escaped backticks, so Quarto does not execute the example -->
+<div class="code-with-filename">
+<div class="code-with-filename-file"><pre><strong>report.qmd</strong></pre></div>
+<div class="sourceCode"><pre class="sourceCode"><code>We sampled &#96;{r} n&#96; plots.
+
+&#96;&#96;&#96;{r}
+#| fig-cap: Plot locations
+plot(plots$x, plots$y)
+&#96;&#96;&#96;</code></pre></div>
+</div>
+```
+
+[Render → text, numbers and figures update together.]{.second-color}
+:::
+
+::: {.column width="50%"}
+![](images/horst/quarto_schematic.jpg){fig-alt="A schematic representing the multi-language input (e.g. Python, R, Observable, Julia) and multi-format output (e.g. PDF, html, Word documents, and more) versatility of Quarto."}
+
+These slides are made this way too.
+:::
+::::
+
+::: {.attribution}
+Artwork by [Allison Horst](https://allisonhorst.com), CC-BY 4.0
+:::
+
+::: notes
+- ~1 min.
+- Two ways to get results into a paper.
+- Copy & paste: save the figure, paste it into Word, type the numbers. Fine for a one-off report.
+- When data or analyses change, every copy must be updated by hand, and something may get missed.
+- One document: text, code and results together. Rendering runs the code, so numbers and figures stay current.
+- Quarto works with R, Python and more, and renders to HTML, PDF or Word, so co-authors can still comment in Word.
+- These slides are a Quarto document as well.
+:::
+
+## Let GitHub do it [optional]{.optional}
 
 ::: {.question}
 Can the rebuild happen automatically?
@@ -663,14 +782,21 @@ Every push rebuilds and publishes these slides.
 ::::
 
 ::: notes
-~1.5 min. GitHub Actions run on every push: render, test, publish.
-Another example: the diversa-map is deployed the same way.
+- ~1.5 min. Optional, skip if time is short.
+- GitHub can run tasks on every push. This is called GitHub Actions.
+- For these slides: every change is rendered and published online automatically.
+- The same works for checks, reports or a web map like the diversa-map.
+- Transition: the work is reproducible. Now let others use it.
 :::
 
 
 # 5 · Publish {background-color="#02457a"}
 
-## FAIR in one slide
+::: notes
+- Fifth step: publish, so others can find, reuse and cite the work.
+:::
+
+## FAIR in one slide [optional]{.optional}
 
 ::: {.question}
 What makes data and code reusable?
@@ -684,8 +810,9 @@ What makes data and code reusable?
 | **R**eusable | licence, documentation | README, data dictionary |
 
 ::: notes
-~1 min. Skip if covered in the research data management talks.
-Most of this follows from the earlier steps: README, data dictionary, open formats.
+- ~1 min. Optional, skip if the earlier talks covered FAIR.
+- Most of this follows from the earlier steps: README, data dictionary, open formats.
+- What is still missing: a licence and a DOI. That comes next.
 :::
 
 ## No licence, no reuse
@@ -694,21 +821,17 @@ Most of this follows from the earlier steps: README, data dictionary, open forma
 May others reuse your code and data?
 :::
 
-**code**: MIT
+![](images/diagrams/licence-spectrum.svg){fig-alt="Licence spectrum from open to restrictive. Data: CC0, CC BY (recommended), CC BY-SA, CC BY-NC, no licence. Code: MIT (recommended), Apache 2.0, GPL, no licence." width="1500px"}
 
-**data**: CC-BY 4.0
-
-<br>
-
-[No licence = all rights reserved.]{.second-color}
-
-<br>
-
-[choosealicense.com](https://choosealicense.com)
+[No licence → unclear rights → no safe reuse.]{.second-color} Help choosing: [choosealicense.com](https://choosealicense.com)
 
 ::: notes
-~1 min. A public repo without a licence legally cannot be reused. Add a LICENSE file.
-The further up, the easier the reuse. CC-BY only asks for credit.
+- ~1 min.
+- Code is protected by copyright automatically. Without a licence, others may look at it but not legally reuse it, even in a public repository.
+- For data it is less clear: plain facts are often not protected, but databases can be. Unclear rights mean nobody can reuse it safely.
+- Left is open and easy to reuse, right is restrictive.
+- Recommendation: MIT for code, CC BY for data. Both only ask for credit.
+- Add a LICENSE file to the project. choosealicense.com helps.
 :::
 
 ## Get a DOI for your code
@@ -717,18 +840,20 @@ The further up, the easier the reuse. CC-BY only asks for credit.
 How do others cite your code?
 :::
 
-::: {.incremental}
 1. connect GitHub to [Zenodo](https://zenodo.org) (once)
 2. create a release on GitHub (`v1.0`)
 3. Zenodo archives it and mints a DOI
-:::
 
-::: {.callout-note}
-TODO: screenshot of a Zenodo record `images/screenshots/zenodo-record.png`
-:::
+[![](images/screenshots/zenodo-record.png){fig-alt="Zenodo record of this presentation, version v1.0, with title, author, abstract and the versions box showing the version DOI and the concept DOI" width="100%"}](https://doi.org/10.5281/zenodo.24471760)
+
+This presentation on Zenodo: metadata taken from `CITATION.cff`.
 
 ::: notes
-~1 min. Zenodo is run by CERN, free and long-term. A DOI makes code citable like a paper.
+- ~1 min.
+- Zenodo is run by CERN. It is free and archives long-term.
+- Three steps: connect once, create a release, get a DOI.
+- This is the real record of these slides: release v1.0 on GitHub, archived on Zenodo.
+- A DOI makes code citable like a paper.
 :::
 
 ## Cite the version you used
@@ -737,23 +862,61 @@ TODO: screenshot of a Zenodo record `images/screenshots/zenodo-record.png`
 Which version did you use?
 :::
 
-| release | plot 17 | DOI |
+These slides:
+
+| | DOI | resolves to |
 |---|---|---|
-| `v1.0` | old position | 10.5281/zenodo.xxxxxx1 |
-| `v1.1` | corrected | 10.5281/zenodo.xxxxxx2 |
-| *all versions* | – | *concept DOI* |
+| **version** `v1.0` | [10.5281/zenodo.24471760](https://doi.org/10.5281/zenodo.24471760) | exactly this version |
+| **concept** | [10.5281/zenodo.24471759](https://doi.org/10.5281/zenodo.24471759) | always the latest version |
 
 <br>
 
-`CITATION.cff` → GitHub shows a **Cite this repository** button
+Every new release gets its own version DOI.
+
+`CITATION.cff` → GitHub shows a **Cite this repository** button.
 
 ::: notes
-~1.5 min. Each release gets its own DOI, the concept DOI always resolves to the latest.
-Colleagues cite exactly the version they used, so results stay traceable.
+- ~1.5 min.
+- Each release gets its own version DOI.
+- Cite the version DOI when your results depend on exactly that state. Example: the plot table before plot 17 was moved.
+- The concept DOI stands for the project in general and always points to the newest release.
+- A CITATION.cff file adds a "Cite this repository" button on GitHub.
 :::
 
 
 # Back to the start {background-color="#02457a"}
+
+::: notes
+- Let's put it all together.
+:::
+
+## One folder, all steps
+
+::: {.question}
+What does a reproducible project look like?
+:::
+
+```{.default}
+diversa-plots/
+├── README.md       ← organise
+├── data-raw/       ← organise
+├── R/              ← organise
+├── .git/           ← track
+├── renv.lock       ← record
+├── _targets.R      ← automate
+├── report.qmd      ← automate
+├── LICENSE         ← publish
+└── CITATION.cff    ← publish → DOI
+```
+
+[Code, data, environment and report in one citable package: a **research compendium**.]{.second-color}
+
+::: notes
+- ~1 min.
+- All five steps end up as files in one project folder.
+- Point at each line: README and folders organise, .git tracks, renv.lock records, the pipeline and report automate, LICENSE and CITATION publish.
+- Such a folder is called a research compendium: everything needed to reproduce the work, citable as one package.
+:::
 
 ## Back to the start
 
@@ -764,15 +927,18 @@ What happens if one value changes at the very start?
 ::: {.incremental}
 - **what** changed → diff
 - **why** → commit message
-- **rerun** → pipeline (`tar_make()`)
-- **cite** → `v1.1` DOI
+- **rerun** → pipeline
+- **cite** → version DOI
 :::
 
 ::: notes
-~1 min. The questions from the beginning are now answered by the workflow itself.
+- ~1 min.
+- Back to plot 17 from the beginning.
+- Each click answers one of the opening questions.
+- What changed: the diff. Why: the commit message. What to rerun: the pipeline. Which version: the DOI.
 :::
 
-## Pick one next step
+## Start small
 
 ::: {.question}
 Where do I start?
@@ -787,7 +953,10 @@ Where do I start?
 | 5 · Publish | a release on Zenodo |
 
 ::: notes
-~1 min. Not everything at once. One step this month.
+- ~1 min.
+- Not everything at once.
+- Pick one step that fits your current project, and do it this month.
+- The README is the easiest start.
 :::
 
 ## Learn more
@@ -799,7 +968,10 @@ Where do I start?
 - [targets manual](https://books.ropensci.org/targets/)
 
 ::: notes
-~30 s. You are not alone: lots of good material and people to ask.
+- ~30 s.
+- You are not alone: lots of good material and people to ask.
+- The Turing Way is the big picture. Happy Git helps with the setup. GitHub Skills has short interactive courses.
+- All links are in the slides.
 :::
 
 
@@ -830,6 +1002,12 @@ Slides available at:
 {{< qrcode https://wiesehahn.github.io/presentation-reproducible_data_processing/presentation.html width=500 height=500 colorDark='#02457a' >}}
 :::
 ::::
+
+::: notes
+- Thank the audience.
+- Point to the QR code: slides, code and DOI are all online.
+- Open for questions.
+:::
 
 
 # References {visibility="uncounted"}
