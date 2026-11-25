@@ -527,38 +527,7 @@ Screenshot: [VS Code docs](https://code.visualstudio.com/docs/sourcecontrol/stag
 - The plus button is add, the Commit button is commit, Sync is pull and push.
 - RStudio has the same in its Git pane.
 - For the first setup: Happy Git and GitHub for the useR, link at the end.
-:::
-
-## Explore a real repository
-
-::: {.question}
-What does this look like in practice?
-:::
-
-:::: {.columns}
-::: {.column width="60%"}
-[**r-spatial/sf**](https://github.com/r-spatial/sf): simple features for R
-
-- **commits** & history
-- **blame**: who changed which line
-- **issues**: questions, bugs, ideas
-- **pull requests**: proposed changes
-- **branches** & **releases**
-- **Actions**: automatic checks
-:::
-
-::: {.column width="40%"}
-{{< qrcode https://github.com/r-spatial/sf width=400 height=400 colorDark='#02457a' >}}
-:::
-::::
-
-::: notes
-- ~2 min.
-- Switch to the browser. The audience can follow along via the QR code.
-- sf is a widely used R package for spatial data, maintained on GitHub.
-- Show the commit history, then blame on one file.
-- Show issues and pull requests: this is how many people work together.
-- Show releases and Actions briefly.
+- If time at the end: live walkthrough of a real repository (backup slide).
 - Transition: the history is safe. But will the code still run?
 :::
 
@@ -752,40 +721,6 @@ Artwork by [Allison Horst](https://allisonhorst.com), CC-BY 4.0
 - One document: text, code and results together. Rendering runs the code, so numbers and figures stay current.
 - Quarto works with R, Python and more, and renders to HTML, PDF or Word, so co-authors can still comment in Word.
 - These slides are a Quarto document as well.
-:::
-
-## Let GitHub do it [optional]{.optional}
-
-::: {.question}
-Can the rebuild happen automatically?
-:::
-
-![](images/screenshots/github-actions.png){fig-alt="GitHub Actions page of this repository with two successful Publish Website runs" width="100%" .lightbox}
-
-:::: {.columns}
-::: {.column width="50%"}
-```{.yaml filename="publish.yml"}
-on:
-  push:
-    branches: main
-steps:
-  - run: quarto render
-  - uses: deploy-pages
-```
-:::
-
-::: {.column width="50%"}
-<br>
-
-Every push rebuilds and publishes these slides.
-:::
-::::
-
-::: notes
-- ~1.5 min. Optional, skip if time is short.
-- GitHub can run tasks on every push. This is called GitHub Actions.
-- For these slides: every change is rendered and published online automatically.
-- The same works for checks, reports or a web map like the diversa-map.
 - Transition: the work is reproducible. Now let others use it.
 :::
 
@@ -796,7 +731,7 @@ Every push rebuilds and publishes these slides.
 - Fifth step: publish, so others can find, reuse and cite the work.
 :::
 
-## FAIR in one slide [optional]{.optional}
+## FAIR in one slide
 
 ::: {.question}
 What makes data and code reusable?
@@ -810,7 +745,7 @@ What makes data and code reusable?
 | **R**eusable | licence, documentation | README, data dictionary |
 
 ::: notes
-- ~1 min. Optional, skip if the earlier talks covered FAIR.
+- ~1 min. Keep it short if the earlier talks already covered FAIR.
 - Most of this follows from the earlier steps: README, data dictionary, open formats.
 - What is still missing: a licence and a DOI. That comes next.
 :::
@@ -834,53 +769,41 @@ May others reuse your code and data?
 - Add a LICENSE file to the project. choosealicense.com helps.
 :::
 
-## Get a DOI for your code
+## Get a DOI, cite a version
 
 ::: {.question}
-How do others cite your code?
+How do others cite your work?
 :::
 
+:::: {.columns}
+::: {.column width="42%"}
 1. connect GitHub to [Zenodo](https://zenodo.org) (once)
 2. create a release on GitHub (`v1.0`)
 3. Zenodo archives it and mints a DOI
 
+| | resolves to |
+|---|---|
+| **version DOI** | exactly this release |
+| **concept DOI** | always the latest |
+
+`CITATION.cff` → **Cite this repository** button on GitHub
+:::
+
+::: {.column width="58%"}
 [![](images/screenshots/zenodo-record.png){fig-alt="Zenodo record of this presentation, version v1.0, with title, author, abstract and the versions box showing the version DOI and the concept DOI" width="100%"}](https://doi.org/10.5281/zenodo.24471760)
 
-This presentation on Zenodo: metadata taken from `CITATION.cff`.
+[This presentation on Zenodo · version DOI [10.5281/zenodo.24471760](https://doi.org/10.5281/zenodo.24471760) · concept DOI [10.5281/zenodo.24471759](https://doi.org/10.5281/zenodo.24471759)]{style="font-size: 0.65em;"}
+:::
+::::
 
 ::: notes
-- ~1 min.
+- ~2 min.
 - Zenodo is run by CERN. It is free and archives long-term.
-- Three steps: connect once, create a release, get a DOI.
-- This is the real record of these slides: release v1.0 on GitHub, archived on Zenodo.
-- A DOI makes code citable like a paper.
-:::
-
-## Cite the version you used
-
-::: {.question}
-Which version did you use?
-:::
-
-These slides:
-
-| | DOI | resolves to |
-|---|---|---|
-| **version** `v1.0` | [10.5281/zenodo.24471760](https://doi.org/10.5281/zenodo.24471760) | exactly this version |
-| **concept** | [10.5281/zenodo.24471759](https://doi.org/10.5281/zenodo.24471759) | always the latest version |
-
-<br>
-
-Every new release gets its own version DOI.
-
-`CITATION.cff` → GitHub shows a **Cite this repository** button.
-
-::: notes
-- ~1.5 min.
-- Each release gets its own version DOI.
-- Cite the version DOI when your results depend on exactly that state. Example: the plot table before plot 17 was moved.
+- Three steps: connect once, create a release, get a DOI. A DOI makes code citable like a paper.
+- Right: the real record of these slides, release v1.0 on GitHub archived on Zenodo.
+- Every release gets its own version DOI. Cite it when your results depend on exactly that state, e.g. the plot table before plot 17 was moved.
 - The concept DOI stands for the project in general and always points to the newest release.
-- A CITATION.cff file adds a "Cite this repository" button on GitHub.
+- A CITATION.cff file adds a "Cite this repository" button on GitHub. Zenodo takes its metadata from there too.
 :::
 
 
@@ -1013,4 +936,33 @@ Slides available at:
 # References {visibility="uncounted"}
 
 ::: {#refs}
+:::
+
+
+# Backup: explore a real repository {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="60%"}
+[**r-spatial/sf**](https://github.com/r-spatial/sf): simple features for R
+
+- **commits** & history
+- **blame**: who changed which line
+- **issues**: questions, bugs, ideas
+- **pull requests**: proposed changes
+- **branches** & **releases**
+- **Actions**: automatic checks
+:::
+
+::: {.column width="40%"}
+{{< qrcode https://github.com/r-spatial/sf width=400 height=400 colorDark='#02457a' >}}
+:::
+::::
+
+::: notes
+- Backup, only if there is time.
+- Switch to the browser. The audience can follow along via the QR code.
+- sf is a widely used R package for spatial data, maintained on GitHub.
+- Show the commit history, then blame on one file.
+- Show issues and pull requests: this is how many people work together.
+- Show releases and Actions briefly.
 :::
